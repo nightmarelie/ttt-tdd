@@ -6,9 +6,10 @@
   "author": "Oleksii Kryvtsov <nightmarelie@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "test": "yarn node --experimental-vm-modules $(yarn bin jest)",
     "build": "webpack"
   },
+  "type": "module",
   "devDependencies": {
     "jest": "^27.4.7",
     "jsdom": "^11.12.0",
