@@ -1,6 +1,10 @@
 class Game {
   getState() {
-    return null;
+    return [
+      ["", "", ""],
+      ["", "", ""],
+      ["", "", ""],
+    ];
   }
 }
 
