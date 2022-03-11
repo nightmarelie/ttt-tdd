@@ -2,7 +2,7 @@
   "name": "ttt-tdd",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:nightmarelie/ttt-tdd.git",
+  "repository": "https://github.com/nightmarelie/ttt-tdd",
   "author": "Oleksii Kryvtsov <nightmarelie@gmail.com>",
   "license": "MIT",
   "scripts": {
