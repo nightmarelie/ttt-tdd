@@ -6,6 +6,8 @@ class Game {
       ["", "", ""],
     ];
   }
+
+  acceptUserMove() {}
 }
 
 export { Game };
