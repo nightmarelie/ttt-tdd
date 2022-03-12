@@ -30,4 +30,14 @@ describe("Game", () => {
 
     expect(board[x][y]).toEqual(userMoveSymbol);
   });
+
+  it("writes users symbol in cell with given coordinates", () => {
+    const x = 1,
+      y = 1;
+
+    game.acceptUserMove(x, y);
+    const board = game.getState();
+
+    expect(board[x][y]).toEqual(userMoveSymbol);
+  });
 });
