@@ -2,6 +2,7 @@ class Game {
   constructor() {
     this._userMoveSymbol = "x";
     this._computerMoveSymbol = "o";
+    this._history = [];
     this._board = [
       ["", "", ""],
       ["", "", ""],
@@ -13,6 +14,7 @@ class Game {
   }
 
   acceptUserMove(x, y) {
+    this._history.push({ turn: "user", x, y });
     this._updateBoard(x, y, {
       symbol: this._userMoveSymbol,
     });
@@ -24,7 +26,9 @@ class Game {
     });
   }
 
-  getMoveHistory(x, y) {}
+  getMoveHistory(x, y) {
+    return this._history;
+  }
 
   _updateBoard(x, y, config) {
     if (this._isSellFree(x, y)) {
