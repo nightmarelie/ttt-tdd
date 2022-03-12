@@ -1,6 +1,7 @@
 class Game {
   constructor() {
     this._userMoveSymbol = "x";
+    this._computerMoveSymbol = "o";
     this._board = [
       ["", "", ""],
       ["", "", ""],
@@ -12,19 +13,23 @@ class Game {
   }
 
   acceptUserMove(x, y) {
-    this._updateBoard(x, y);
+    this._updateBoard(x, y, {
+      symbol: this._userMoveSymbol,
+    });
   }
 
   createComputerMove(x, y) {
-    this._updateBoard(x, y);
+    this._updateBoard(x, y, {
+      symbol: this._computerMoveSymbol,
+    });
   }
 
-  _updateBoard(x, y) {
+  _updateBoard(x, y, config) {
     if (this._isSellFree(x, y)) {
       this._throwException("Cell is already taken");
     }
 
-    this._board[x][y] = this._userMoveSymbol;
+    this._board[x][y] = config.symbol;
   }
 
   _isSellFree(x, y) {

@@ -1,6 +1,7 @@
 import { Game } from "../src/game";
 
 const userMoveSymbol = "x";
+const computerMoveSymbol = "o";
 const initialGameBoardState = [
   ["", "", ""],
   ["", "", ""],
@@ -48,6 +49,6 @@ describe("Game", () => {
     game.createComputerMove(x, y);
     const board = game.getState();
 
-    expect(board[x][y]).toEqual(userMoveSymbol);
+    expect(board[x][y]).toEqual(computerMoveSymbol);
   });
 });
