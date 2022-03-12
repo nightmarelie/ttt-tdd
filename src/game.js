@@ -16,11 +16,19 @@ class Game {
   }
 
   _updateBoard(x, y) {
-    if (this._board[x][y]) {
-      throw Error("Cell is already taken");
+    if (this._isSellFree(x, y)) {
+      this._throwException("Cell is already taken");
     }
 
     this._board[x][y] = this._userMoveSymbol;
+  }
+
+  _isSellFree(x, y) {
+    return this._board[x][y];
+  }
+
+  _throwException(msg) {
+    throw new Error(msg);
   }
 }
 
