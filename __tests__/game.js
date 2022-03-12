@@ -72,4 +72,19 @@ describe("Game", () => {
 
     expect(history).toEqual([{ turn: computerName, x, y }]);
   });
+
+  it("saves 1 users move and 1 computers move in history", () => {
+    const uX = 1,
+      uY = 1;
+    const cX = 2,
+      cY = 2;
+
+    game.acceptUserMove(uX, uY);
+    game.createComputerMove(cX, cY);
+    const history = game.getMoveHistory();
+
+    expect(history.length).toEqual(2);
+    expect(history[0].turn).toEqual(userName);
+    expect(history[1].turn).toEqual(computerName);
+  });
 });
