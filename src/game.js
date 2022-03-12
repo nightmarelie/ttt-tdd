@@ -16,6 +16,10 @@ class Game {
   }
 
   _updateBoard(x, y) {
+    if (this._board[x][y]) {
+      throw Error("Cell is already taken");
+    }
+
     this._board[x][y] = this._userMoveSymbol;
   }
 }
