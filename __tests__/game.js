@@ -1,5 +1,6 @@
 import { Game } from "../src/game";
 
+const userMoveSymbol = "x";
 const initialGameBoardState = [
   ["", "", ""],
   ["", "", ""],
@@ -27,6 +28,6 @@ describe("Game", () => {
     game.acceptUserMove(x, y);
     const board = game.getState();
 
-    expect(board[x][y]).toEqual("x");
+    expect(board[x][y]).toEqual(userMoveSymbol);
   });
 });
