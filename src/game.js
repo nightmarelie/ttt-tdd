@@ -2,6 +2,7 @@ class Game {
   constructor() {
     this._userMoveSymbol = "x";
     this._computerMoveSymbol = "o";
+    this._userName = "user";
     this._history = [];
     this._board = [
       ["", "", ""],
@@ -14,7 +15,7 @@ class Game {
   }
 
   acceptUserMove(x, y) {
-    this._history.push({ turn: "user", x, y });
+    this._history.push({ turn: this._userName, x, y });
     this._updateBoard(x, y, {
       symbol: this._userMoveSymbol,
     });

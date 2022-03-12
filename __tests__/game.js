@@ -2,6 +2,7 @@ import { Game } from "../src/game";
 
 const userMoveSymbol = "x";
 const computerMoveSymbol = "o";
+const userName = "user";
 const initialGameBoardState = [
   ["", "", ""],
   ["", "", ""],
@@ -59,6 +60,6 @@ describe("Game", () => {
     game.acceptUserMove(x, y);
     const history = game.getMoveHistory();
 
-    expect(history).toEqual([{ turn: "user", x, y }]);
+    expect(history).toEqual([{ turn: userName, x, y }]);
   });
 });
