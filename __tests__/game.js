@@ -40,4 +40,14 @@ describe("Game", () => {
 
     expect(func).toThrow("Cell is already taken");
   });
+
+  it("computer moves in a cell with given coordinates", () => {
+    const x = 0,
+      y = 0;
+
+    game.createComputerMove(x, y);
+    const board = game.getState();
+
+    expect(board[x][y]).toEqual(userMoveSymbol);
+  });
 });

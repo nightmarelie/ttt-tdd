@@ -15,6 +15,10 @@ class Game {
     this._updateBoard(x, y);
   }
 
+  createComputerMove(x, y) {
+    this._updateBoard(x, y);
+  }
+
   _updateBoard(x, y) {
     if (this._isSellFree(x, y)) {
       this._throwException("Cell is already taken");
