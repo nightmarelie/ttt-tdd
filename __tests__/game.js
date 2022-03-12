@@ -30,4 +30,14 @@ describe("Game", () => {
 
     expect(board[x][y]).toEqual(userMoveSymbol);
   });
+
+  it("throws an exception if user moves in taken cell", () => {
+    const x = 2,
+      y = 2;
+
+    game.acceptUserMove(x, y);
+    const func = game.acceptUserMove.bind(game, x, y);
+
+    expect(func).toThrow("Cell is already taken");
+  });
 });
