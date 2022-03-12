@@ -51,4 +51,14 @@ describe("Game", () => {
 
     expect(board[x][y]).toEqual(computerMoveSymbol);
   });
+
+  it("saves users move in history", () => {
+    const x = 1,
+      y = 1;
+
+    game.acceptUserMove(x, y);
+    const history = game.getMoveHistory();
+
+    expect(history).toEqual([{ turn: "user", x, y }]);
+  });
 });

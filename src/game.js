@@ -24,6 +24,8 @@ class Game {
     });
   }
 
+  getMoveHistory(x, y) {}
+
   _updateBoard(x, y, config) {
     if (this._isSellFree(x, y)) {
       this._throwException("Cell is already taken");
