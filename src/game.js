@@ -1,13 +1,18 @@
 class Game {
-  getState() {
-    return [
+  constructor() {
+    this._board = [
       ["", "", ""],
       ["", "", ""],
       ["", "", ""],
     ];
   }
+  getState() {
+    return this._board;
+  }
 
-  acceptUserMove() {}
+  acceptUserMove(x, y) {
+    this._board[x][y] = "x";
+  }
 }
 
 export { Game };
