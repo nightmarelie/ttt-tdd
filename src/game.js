@@ -3,6 +3,7 @@ class Game {
     this._userMoveSymbol = "x";
     this._computerMoveSymbol = "o";
     this._userName = "user";
+    this._computerName = "computer";
     this._history = [];
     this._board = [
       ["", "", ""],
@@ -15,14 +16,14 @@ class Game {
   }
 
   acceptUserMove(x, y) {
-    this._history.push({ turn: this._userName, x, y });
+    this._updateHistory(this._userName, x, y);
     this._updateBoard(x, y, {
       symbol: this._userMoveSymbol,
     });
   }
 
   createComputerMove(x, y) {
-    this._history.push({ turn: "computer", x, y });
+    this._updateHistory(this._computerName, x, y);
     this._updateBoard(x, y, {
       symbol: this._computerMoveSymbol,
     });
@@ -46,6 +47,10 @@ class Game {
 
   _throwException(msg) {
     throw new Error(msg);
+  }
+
+  _updateHistory(turn, x, y) {
+    this._history.push({ turn, x, y });
   }
 }
 
