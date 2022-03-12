@@ -62,4 +62,13 @@ describe("Game", () => {
 
     expect(history).toEqual([{ turn: userName, x, y }]);
   });
+
+  it("saves computers move in history", () => {
+    const x = 0,
+      y = 0;
+    game.createComputerMove(x, y);
+    const history = game.getMoveHistory();
+
+    expect(history).toEqual([{ turn: "computer", x, y }]);
+  });
 });
