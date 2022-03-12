@@ -22,6 +22,7 @@ class Game {
   }
 
   createComputerMove(x, y) {
+    this._history.push({ turn: "computer", x, y });
     this._updateBoard(x, y, {
       symbol: this._computerMoveSymbol,
     });
