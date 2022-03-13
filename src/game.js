@@ -22,7 +22,10 @@ class Game {
     });
   }
 
-  createComputerMove(x, y) {
+  createComputerMove() {
+    const x = Math.floor(Math.random() * (3 - 0));
+    const y = Math.floor(Math.random() * (3 - 0));
+
     this._updateHistory(this._computerName, x, y);
     this._updateBoard(x, y, {
       symbol: this._computerMoveSymbol,

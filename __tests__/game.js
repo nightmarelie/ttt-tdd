@@ -45,13 +45,6 @@ describe("Game", () => {
     expect(func).toThrow("Cell is already taken");
   });
 
-  it("computer moves in a cell with given coordinates", () => {
-    game.createComputerMove();
-    const board = game.getState();
-
-    expect(board[x][y]).toEqual(computerMoveSymbol);
-  });
-
   it("saves users move in history", () => {
     const x = 1,
       y = 1;
@@ -65,8 +58,10 @@ describe("Game", () => {
   it("saves computers move in history", () => {
     game.createComputerMove();
     const history = game.getMoveHistory();
+    const mock = jest.spyOn(global.Math, "random").mockReturnValue(0.5);
 
-    expect(history).toEqual([{ turn: computerName, x, y }]);
+    expect(history).toEqual([{ turn: computerName, x: 2, y: 2 }]);
+    mock.mockRestore();
   });
 
   it("saves 1 users move and 1 computers move in history", () => {
