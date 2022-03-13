@@ -1,3 +1,4 @@
+import { jest } from "@jest/globals";
 import { Game } from "../src/game";
 
 const userMoveSymbol = "x";
@@ -45,10 +46,7 @@ describe("Game", () => {
   });
 
   it("computer moves in a cell with given coordinates", () => {
-    const x = 0,
-      y = 0;
-
-    game.createComputerMove(x, y);
+    game.createComputerMove();
     const board = game.getState();
 
     expect(board[x][y]).toEqual(computerMoveSymbol);
@@ -65,9 +63,7 @@ describe("Game", () => {
   });
 
   it("saves computers move in history", () => {
-    const x = 0,
-      y = 0;
-    game.createComputerMove(x, y);
+    game.createComputerMove();
     const history = game.getMoveHistory();
 
     expect(history).toEqual([{ turn: computerName, x, y }]);
@@ -76,15 +72,23 @@ describe("Game", () => {
   it("saves 1 users move and 1 computers move in history", () => {
     const uX = 1,
       uY = 1;
-    const cX = 2,
-      cY = 2;
 
     game.acceptUserMove(uX, uY);
-    game.createComputerMove(cX, cY);
+    game.createComputerMove();
     const history = game.getMoveHistory();
 
     expect(history.length).toEqual(2);
     expect(history[0].turn).toEqual(userName);
     expect(history[1].turn).toEqual(computerName);
+  });
+
+  it("computer moves in randomly choosen cell", () => {
+    const mock = jest.spyOn(global.Math, "random").mockReturnValue(0.5);
+
+    game.createComputerMove();
+    const board = game.getState();
+
+    expect(board[1][1]).toEqual(computerMoveSymbol);
+    mock.mockRestore();
   });
 });
