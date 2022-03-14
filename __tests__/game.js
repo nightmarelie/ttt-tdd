@@ -105,6 +105,7 @@ describe("Game", () => {
 
   test("computer moves in cell that is not taken", () => {
     fillCells(game);
+    jest.spyOn(global.Math, "random").mockRestore();
 
     game.createComputerMove();
     const board = game.getState();
