@@ -39,6 +39,10 @@ class Game {
     return this._history;
   }
 
+  isWinner(player) {
+    return false;
+  }
+
   _updateBoard(x, y, config) {
     if (this._isSellFree(x, y)) {
       this._throwException("Cell is already taken");
