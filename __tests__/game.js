@@ -114,4 +114,16 @@ describe("Game", () => {
     expect(count(board, computerMoveSymbol)).toBe(1);
     expect(board[2][2]).toEqual(computerMoveSymbol);
   });
+
+  test("if there are no free cells computer throws an exception", () => {
+    // fill all the cells
+    for (let i = 0; i < 3; ++i) {
+      for (let j = 0; j < 3; ++j) {
+        game.acceptUserMove(i, j);
+      }
+    }
+
+    const func = game.createComputerMove.bind(game);
+    expect(func).toThrow("no cells available");
+  });
 });
