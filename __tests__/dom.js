@@ -80,4 +80,15 @@ describe("DOM controller", () => {
 
     expect(window.alert).toHaveBeenCalled();
   });
+
+  test("redraws table on cell click", () => {
+    const game = createGame();
+    const domController = createInstance(game);
+
+    domController.init();
+    document.querySelector("table td").click();
+    const text = document.querySelector("table td").textContent;
+
+    expect(text).toEqual("x");
+  });
 });
