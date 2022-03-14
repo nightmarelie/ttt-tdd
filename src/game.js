@@ -40,7 +40,25 @@ class Game {
   }
 
   isWinner(player) {
-    return false;
+    const symbol = this._getSymbolForPlayer(player);
+    const range = [...Array(this._fieldSize).keys()];
+    const isEqual = this._checkCellEqual(symbol);
+
+    const horizontal = range.reduce(
+      (res, i) => (isEqual(i, 0) && isEqual(i, 1) && isEqual(i, 2)) || res,
+      false
+    );
+
+    const vertical = range.reduce(
+      (res, i) => (isEqual(0, i) && isEqual(1, i) && isEqual(2, i)) || res,
+      false
+    );
+
+    const diagonal =
+      (isEqual(0, 0) && isEqual(1, 1) && isEqual(2, 2)) ||
+      (isEqual(0, 2) && isEqual(1, 1) && isEqual(2, 0));
+
+    return horizontal || vertical || diagonal || false;
   }
 
   _updateBoard(x, y, config) {
@@ -85,6 +103,16 @@ class Game {
         row.reduce((count, el) => (el === "" ? ++count : count), total),
       0
     );
+  }
+
+  _getSymbolForPlayer(player) {
+    return player === this._userName
+      ? this._userMoveSymbol
+      : this._computerMoveSymbol;
+  }
+
+  _checkCellEqual(symbol) {
+    return (i, j) => this._board[i][j] === symbol;
   }
 }
 
