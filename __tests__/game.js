@@ -14,7 +14,13 @@ const initialGameBoardState = [
 describe("Game", () => {
   let game;
   beforeEach(() => {
+    jest.spyOn(global.Math, "random").mockReturnValue(0.5);
+
     game = new Game();
+  });
+
+  afterEach(() => {
+    jest.spyOn(global.Math, "random").mockRestore();
   });
 
   it("should return empty game board", () => {
@@ -58,15 +64,13 @@ describe("Game", () => {
   it("saves computers move in history", () => {
     game.createComputerMove();
     const history = game.getMoveHistory();
-    const mock = jest.spyOn(global.Math, "random").mockReturnValue(0.5);
 
-    expect(history).toEqual([{ turn: computerName, x: 2, y: 2 }]);
-    mock.mockRestore();
+    expect(history).toEqual([{ turn: computerName, x: 1, y: 1 }]);
   });
 
   it("saves 1 users move and 1 computers move in history", () => {
-    const uX = 1,
-      uY = 1;
+    const uX = 2,
+      uY = 2;
 
     game.acceptUserMove(uX, uY);
     game.createComputerMove();
@@ -78,12 +82,9 @@ describe("Game", () => {
   });
 
   it("computer moves in randomly choosen cell", () => {
-    const mock = jest.spyOn(global.Math, "random").mockReturnValue(0.5);
-
     game.createComputerMove();
     const board = game.getState();
 
     expect(board[1][1]).toEqual(computerMoveSymbol);
-    mock.mockRestore();
   });
 });
