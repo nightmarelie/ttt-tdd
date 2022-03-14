@@ -1,5 +1,6 @@
 import { jest } from "@jest/globals";
-import { Game } from "../src/game";
+import { Game } from "../src/Game";
+import { GameBuilder } from "../src/GameBuilder";
 
 const userMoveSymbol = "x";
 const computerMoveSymbol = "o";
@@ -126,9 +127,16 @@ describe("Game", () => {
   });
 
   test("checks if user won by horizontal", () => {
-    game.acceptUserMove(0, 0);
-    game.acceptUserMove(0, 1);
-    game.acceptUserMove(0, 2);
+    const game = new GameBuilder()
+      .withBoardState(
+        `
+      x x x
+      . . .
+      . . .
+      `
+      )
+      .build();
+
     const userWon = game.isWinner(userName);
 
     expect(userWon).toEqual(true);
