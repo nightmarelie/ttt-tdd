@@ -25,7 +25,7 @@ describe("DOM controller", () => {
     expect(document.querySelectorAll("table").length).toBe(1);
   });
 
-  test("Creates table with 3 rows and 3 columns", () => {
+  test("creates table with 3 rows and 3 columns", () => {
     const domController = createInstance();
 
     domController.createTable(3, 3);
