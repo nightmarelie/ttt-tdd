@@ -11,10 +11,11 @@ const initialGameBoardState = [
   ["", "", ""],
 ];
 
-const fillCells = (game) => {
+const fillCells = (game, config = {}) => {
+  const { x = -1, y = -1 } = config;
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
-      if (i !== 2 || j !== 2) game.acceptUserMove(i, j);
+      if (i !== x || j !== y) game.acceptUserMove(i, j);
     }
   }
 };
@@ -104,7 +105,8 @@ describe("Game", () => {
   });
 
   test("computer moves in cell that is not taken", () => {
-    fillCells(game);
+    // fill all the cells with user's symbol except last
+    fillCells(game, { x: 2, y: 2 });
     jest.spyOn(global.Math, "random").mockRestore();
 
     game.createComputerMove();
@@ -117,11 +119,7 @@ describe("Game", () => {
 
   test("if there are no free cells computer throws an exception", () => {
     // fill all the cells
-    for (let i = 0; i < 3; ++i) {
-      for (let j = 0; j < 3; ++j) {
-        game.acceptUserMove(i, j);
-      }
-    }
+    fillCells(game);
 
     const func = game.createComputerMove.bind(game);
     expect(func).toThrow("no cells available");
