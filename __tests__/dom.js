@@ -4,7 +4,12 @@ import jsdom from "jsdom";
 import { Game } from "../src/Game";
 import { DomController } from "../src/DomController";
 
-const createInstance = () => new DomController("#root");
+const createInstance = (game = {}) => {
+  return new DomController({
+    game: game,
+    root: "#root",
+  });
+};
 
 const { JSDOM } = jsdom;
 const dom = new JSDOM('<html><body id="root"></body></html>');
@@ -42,5 +47,15 @@ describe("DOM controller", () => {
     document.querySelector("table td").click();
 
     expect(domController.lastClickedIndices).toEqual([0, 0]);
+  });
+
+  test("makes user move in game on cell click", () => {
+    const gameMock = { acceptUserMove: jest.fn() };
+    const domController = createInstance(gameMock);
+
+    domController.createTable(3, 3);
+    document.querySelector("table td").click();
+
+    expect(domController.game.acceptUserMove).toHaveBeenCalled();
   });
 });
