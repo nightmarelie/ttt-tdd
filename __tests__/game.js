@@ -11,6 +11,21 @@ const initialGameBoardState = [
   ["", "", ""],
 ];
 
+const fillCells = (game) => {
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (i !== 2 || j !== 2) game.acceptUserMove(i, j);
+    }
+  }
+};
+
+const count = (arr, symbol) =>
+  arr.reduce((result, row) => {
+    return row.reduce((count, el) => {
+      return el === symbol ? ++count : count;
+    }, result);
+  }, 0);
+
 describe("Game", () => {
   let game;
   beforeEach(() => {
@@ -89,30 +104,13 @@ describe("Game", () => {
   });
 
   test("computer moves in cell that is not taken", () => {
-    // fill all the cells with user's symbol except last
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 3; j++) {
-        if (i !== 2 || j !== 2) game.acceptUserMove(i, j);
-      }
-    }
+    fillCells(game);
 
     game.createComputerMove();
     const board = game.getState();
 
-    const userCount = board.reduce((result, row) => {
-      return row.reduce((count, el) => {
-        return el === userMoveSymbol ? ++count : count;
-      }, result);
-    }, 0);
-
-    const computerCount = board.reduce((result, row) => {
-      return row.reduce((count, el) => {
-        return el === computerMoveSymbol ? ++count : count;
-      }, result);
-    }, 0);
-
-    expect(userCount).toBe(8);
-    expect(computerCount).toBe(1);
+    expect(count(board, userMoveSymbol)).toBe(8);
+    expect(count(board, computerMoveSymbol)).toBe(1);
     expect(board[2][2]).toEqual(computerMoveSymbol);
   });
 });
