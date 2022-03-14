@@ -4,6 +4,18 @@ class DomController {
     this.rootNode = document.querySelector(root);
   }
 
+  init() {
+    const size = this.game.getSize();
+    this.createTable(size, size);
+  }
+
+  clear() {
+    this.game.clear();
+    this.rootNode.innerHTML = "";
+    this.active = true;
+    this.init();
+  }
+
   createTable(rows = 0, cols = 0) {
     const child = document.createElement("table");
     this.rootNode.appendChild(child);

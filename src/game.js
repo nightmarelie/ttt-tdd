@@ -16,6 +16,10 @@ class Game {
     return this._board;
   }
 
+  getSize() {
+    return this._fieldSize;
+  }
+
   acceptUserMove(x, y) {
     this._updateHistory(this._userName, x, y);
     this._updateBoard(x, y, {

@@ -4,6 +4,8 @@ import jsdom from "jsdom";
 import { Game } from "../src/Game";
 import { DomController } from "../src/DomController";
 
+const createGame = (board) => new Game(board);
+
 const createInstance = (game = {}) => {
   return new DomController({
     game: game,
@@ -19,7 +21,16 @@ global.document = dom.window.document;
 
 describe("DOM controller", () => {
   afterEach(() => {
+    window.alert = jest.spyOn(window, "alert");
     document.body.innerHTML = "";
+  });
+
+  afterEach(() => {
+    window.alert.mockReset();
+  });
+
+  afterAll(() => {
+    window.alert.mockRestore();
   });
 
   test("creates empty table", () => {
@@ -57,5 +68,16 @@ describe("DOM controller", () => {
     document.querySelector("table td").click();
 
     expect(domController.game.acceptUserMove).toHaveBeenCalled();
+  });
+
+  test("gets an alert when user makes move in taken cell", () => {
+    const game = createGame();
+    const domController = createInstance(game);
+
+    domController.init();
+    document.querySelector("table td").click();
+    document.querySelector("table td").click();
+
+    expect(window.alert).toHaveBeenCalled();
   });
 });
