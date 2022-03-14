@@ -1,5 +1,6 @@
 class DomController {
-  constructor(root) {
+  constructor({ root, game }) {
+    this.game = game;
     this.rootNode = document.querySelector(root);
   }
 
@@ -21,6 +22,15 @@ class DomController {
 
   _handleCellClick(row, col) {
     this.lastClickedIndices = [row, col];
+    try {
+      this._makeUserMove(row, col);
+    } catch (e) {
+      window.alert(e.message);
+    }
+  }
+
+  _makeUserMove(row, col) {
+    this.game.acceptUserMove(row, col);
   }
 }
 
