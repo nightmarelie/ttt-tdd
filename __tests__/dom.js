@@ -100,6 +100,6 @@ describe("DOM controller", () => {
     document.querySelector("table td").click();
     const text = document.querySelector("table").textContent;
 
-    expect(text.indexOf("o") > -1).toBe(true);
+    expect(text.indexOf("o") > -1).toBe(false);
   });
 });
