@@ -55,4 +55,11 @@ describe("Using mathers", () => {
   it("but there is a 'stop' in Christoph", () => {
     expect("Christop").toMatch(/stop/);
   });
+
+  it("array and iterables", () => {
+    const list = ["diapers", "kleenex", "trash bags", "paper towels", "milk"];
+
+    expect(list).toContain("milk");
+    expect(new Set(list)).toContain("milk");
+  });
 });
