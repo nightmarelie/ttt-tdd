@@ -62,4 +62,13 @@ describe("Using mathers", () => {
     expect(list).toContain("milk");
     expect(new Set(list)).toContain("milk");
   });
+
+  it("exception", () => {
+    function throwErrorFn() {
+      throw new Error("simple error");
+    }
+
+    expect(throwErrorFn).toThrow("simple error");
+    expect(throwErrorFn).toThrow(/error/);
+  });
 });
