@@ -47,4 +47,12 @@ describe("Using mathers", () => {
 
     expect(value).toBeCloseTo(0.3);
   });
+
+  it("there is no I in team", () => {
+    expect("team").not.toMatch(/I/);
+  });
+
+  it("but there is a 'stop' in Christoph", () => {
+    expect("Christop").toMatch(/stop/);
+  });
 });
