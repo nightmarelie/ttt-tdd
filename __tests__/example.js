@@ -87,4 +87,8 @@ describe("Using mathers", () => {
   it("promises resolves", () => {
     return expect(sleep("hey resolves")).resolves.toBe("hey resolves");
   });
+
+  it("promises rejects", () => {
+    return expect(promiseReject("ooops")).rejects.toMatch(/ops/);
+  });
 });
