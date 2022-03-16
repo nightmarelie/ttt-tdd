@@ -71,4 +71,12 @@ describe("Using mathers", () => {
     expect(throwErrorFn).toThrow("simple error");
     expect(throwErrorFn).toThrow(/error/);
   });
+
+  const sleep = (data) => {
+    return new Promise((resolve) => setTimeout(resolve, 1000, data));
+  };
+
+  it("promises", () => {
+    return sleep("hey").then((data) => expect(data).toBe("hey"));
+  });
 });
