@@ -73,10 +73,18 @@ describe("Using mathers", () => {
   });
 
   const sleep = (data) => {
-    return new Promise((resolve) => setTimeout(resolve, 1000, data));
+    return new Promise((resolve) => setTimeout(resolve, 300, data));
+  };
+
+  const promiseReject = (msg) => {
+    return new Promise((_, reject) => setTimeout(reject, 300, msg));
   };
 
   it("promises", () => {
     return sleep("hey").then((data) => expect(data).toBe("hey"));
+  });
+
+  it("promises resolves", () => {
+    return expect(sleep("hey resolves")).resolves.toBe("hey resolves");
   });
 });
