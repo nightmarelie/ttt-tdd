@@ -92,7 +92,7 @@ describe("Using mathers", () => {
     return expect(promiseReject("ooops")).rejects.toMatch(/ops/);
   });
 
-  it("async/await", async () => {
+  it("async/await exp.1", async () => {
     const data = await sleep("response");
     expect(data).toBe("response");
 
@@ -103,5 +103,10 @@ describe("Using mathers", () => {
     }
 
     expect.assertions(2);
+  });
+
+  it("async/await exp.2", async () => {
+    await expect(sleep("response")).resolves.toBe("response");
+    await expect(promiseReject("error")).rejects.toMatch("error");
   });
 });
