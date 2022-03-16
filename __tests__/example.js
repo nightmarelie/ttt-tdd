@@ -91,4 +91,17 @@ describe("Using mathers", () => {
   it("promises rejects", () => {
     return expect(promiseReject("ooops")).rejects.toMatch(/ops/);
   });
+
+  it("async/await", async () => {
+    const data = await sleep("response");
+    expect(data).toBe("response");
+
+    try {
+      await promiseReject("error");
+    } catch (e) {
+      expect(e).toMatch("error");
+    }
+
+    expect.assertions(2);
+  });
 });
