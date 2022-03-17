@@ -1,4 +1,28 @@
+class DB {
+  static initializeCityDatabase() {}
+  static clearCityDatabase() {}
+  static isCity() {
+    return true;
+  }
+}
+
 describe("Using mathers", () => {
+  beforeEach(() => {
+    DB.initializeCityDatabase();
+  });
+
+  afterEach(() => {
+    DB.clearCityDatabase();
+  });
+
+  it("city database has Vienna", () => {
+    expect(DB.isCity("Vienna")).toBeTruthy();
+  });
+
+  it("city database has San Juan", () => {
+    expect(DB.isCity("San Juan")).toBeTruthy();
+  });
+
   it("two plus two is four", () => {
     expect(2 + 2).toBe(4);
   });
