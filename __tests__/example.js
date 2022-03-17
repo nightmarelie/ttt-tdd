@@ -15,7 +15,7 @@ describe("Using mathers", () => {
     DB.clearCityDatabase();
   });
 
-  it("city database has Vienna", () => {
+  it.only("city database has Vienna", () => {
     expect(DB.isCity("Vienna")).toBeTruthy();
   });
 
