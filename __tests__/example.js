@@ -1,3 +1,5 @@
+import { forEach } from "../src/simple";
+
 class DB {
   static initializeCityDatabase() {}
   static clearCityDatabase() {}
