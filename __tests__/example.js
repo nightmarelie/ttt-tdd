@@ -152,5 +152,14 @@ describe("Using mathers", () => {
 
     // The return value of the first call to the function was 42
     expect(mockCallback.mock.results[0].value).toBe(42);
+
+    const myMock = jest.fn();
+
+    const a = new myMock();
+    const b = {};
+    const bound = myMock.bind(b);
+    bound();
+
+    console.log(myMock.mock.instances);
   });
 });
