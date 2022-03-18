@@ -155,5 +155,17 @@ describe("Using mathers", () => {
 
     // The return value of the second call to the function was 42
     expect(mockCallback.mock.results[1].value).toBe(43);
+
+    const myMock = jest.fn();
+
+    myMock
+      .mockReturnValueOnce(10)
+      .mockReturnValueOnce("x")
+      .mockReturnValue(true);
+
+    expect(myMock()).toBe(10);
+    expect(myMock()).toBe("x");
+    expect(myMock()).toBe(true);
+    expect(myMock()).toBe(true);
   });
 });
