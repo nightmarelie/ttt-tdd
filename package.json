@@ -18,5 +18,8 @@
   },
   "dependencies": {
     "axios": "^0.26.1"
+  },
+  "jest": {
+    "transform": {}
   }
 }
