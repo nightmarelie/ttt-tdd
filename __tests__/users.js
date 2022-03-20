@@ -9,6 +9,8 @@ jest.mock("axios", () => {
   };
 });
 
+axios.get = jest.fn();
+
 describe("Mocking Module", () => {
   it("users", () => {
     const users = [{ name: "Bob" }];
