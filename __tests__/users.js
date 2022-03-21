@@ -2,12 +2,7 @@ import { describe, it, expect, jest } from "@jest/globals";
 import axios from "axios";
 import Users from "../src/users";
 
-jest.mock("axios", () => {
-  return {
-    __esModule: true,
-    foo: "mocked foo",
-  };
-});
+jest.mock("axios");
 
 axios.get = jest.fn();
 
