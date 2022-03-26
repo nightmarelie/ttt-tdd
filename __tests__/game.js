@@ -112,7 +112,6 @@ describe("Game", () => {
 
     game.createComputerMove();
     const board = game.getState();
-
     expect(count(board, userMoveSymbol)).toBe(8);
     expect(count(board, computerMoveSymbol)).toBe(1);
     expect(board[2][2]).toEqual(computerMoveSymbol);
@@ -121,7 +120,6 @@ describe("Game", () => {
   test("if there are no free cells computer throws an exception", () => {
     // fill all the cells
     fillCells(game);
-
     const func = game.createComputerMove.bind(game);
     expect(func).toThrow("no cells available");
   });
@@ -138,7 +136,6 @@ describe("Game", () => {
       .build();
 
     const userWon = game.isWinner(userName);
-
     expect(userWon).toEqual(true);
   });
 });
